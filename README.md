@@ -86,11 +86,11 @@ Preencha todas as variáves conforme suas configurações de banco de dados.
 <diretorio do projeto>/src/database.js
 ```
 
-Salve o arquivo e execute os comandos abaixo:
+Salve o arquivo e execute os comandos abaixo dentro do diretório do projeto:
 ```bash
 #Instalar dependencias e executar o projeto
 npm install && npm start
 ```
 
 
-## Grato pela Oportunidade e aguardo contato!
+## goahead!
