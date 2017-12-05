@@ -15,10 +15,11 @@ const openConnection = () => {
 
     connection.connect((error) => {
         if (error) {
+            alert('Ocorreu um erro!\r\ndatabase.openConnection()');
             return console.log(error.stack);
         }
 
-        console.log('Connection established');
+        // console.log('Connection established');
     });
 
     return connection;
@@ -26,7 +27,7 @@ const openConnection = () => {
 
 const closeConnection = (connection) => {
     connection.end(() => {
-        console.log('DB connection closed');
+        // console.log('DB connection closed');
     });
 };
 

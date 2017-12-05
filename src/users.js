@@ -6,7 +6,7 @@ var render = require('./renderFunctions');
 //get all user's data
 const getData = () => {
     var connection;
-
+    
     try {
         connection = db.openConnection();
         $query = 'SELECT `name`,`phoneNumber`,`email`,`birthDate` FROM users';
@@ -35,7 +35,7 @@ const getData = () => {
 
                 for (let index = 0; index < tableItems.length; index++) {
                     const element = tableItems[index];
-                    //console.log('email', element.attributes.getNamedItem('data').nodeValue);
+
                     element.addEventListener('click', () => {
                         let email = element.attributes.getNamedItem('data').nodeValue;
                         getUserData(email);
@@ -46,6 +46,7 @@ const getData = () => {
         });
     } catch (error) {
         console.log(error);
+        alert('Ocorreu um erro!\r\nusers.getData()');
     } finally {
         db.closeConnection(connection);
     }
@@ -70,6 +71,7 @@ const getUserData = (email) => {
         });
     } catch (error) {
         console.log(error);
+        alert('Ocorreu um erro!\r\nusers.getUserData()');
     } finally {
         db.closeConnection(connection);
     }
@@ -86,6 +88,8 @@ const editUser = (data) => {
     name.value = data[0].name;
     phoneNumber.value = data[0].phoneNumber;
     email.value = data[0].email;
+    email.disabled = 'disabled';
+    email.classList.add('disabled');
     birthDate.value = moment.utc(data[0].birthDate).format('YYYY-MM-DD');
     address.value = data[0].address;
 
@@ -100,6 +104,11 @@ const editUser = (data) => {
 const addUser = (name, phoneNumber, email, birthDate, address) => {
     var connection;
 
+    if (!name || !phoneNumber || !email || !birthDate || !address) {
+        alert('Por favor, verifique se os dados foram preenchidos corretamente.');
+        return;
+    }
+
     try {
         connection = db.openConnection();
         $query = 'INSERT INTO users (name, phoneNumber, email, birthDate, address) VALUES (?, ?, ?, ?, ?)';
@@ -111,10 +120,13 @@ const addUser = (name, phoneNumber, email, birthDate, address) => {
             }
 
             getData();
-            //update content
+            
+            render.resetSidebar();
+            render.sidebarMode(['btnAddUser'], ['btnUpdate']);
         });
     } catch (error) {
-
+        console.log(error);
+        alert('Ocorreu um erro!\r\nusers.addUser()');
     } finally {
         db.closeConnection(connection);
     }
@@ -124,6 +136,11 @@ const addUser = (name, phoneNumber, email, birthDate, address) => {
 const updateUser = (name, phoneNumber, email, birthDate, address) => {
     var connection;
 
+    if (!name || !phoneNumber || !email || !birthDate || !address) {
+        alert('Por favor, verifique se os dados foram preenchidos corretamente.');
+        return;
+    }
+    
     try {
         connection = db.openConnection();
         $query = 'UPDATE `users` SET `name`=?,`phoneNumber`=?,`birthDate`=?,`address`=? WHERE `email`= ?';
@@ -138,10 +155,39 @@ const updateUser = (name, phoneNumber, email, birthDate, address) => {
             //update content
         });
     } catch (error) {
-
+        console.log(error);
+        alert('Ocorreu um erro!\r\nusers.updateUser()');
     } finally {
         db.closeConnection(connection);
     }
 }
 
-module.exports = { getData, addUser, updateUser }
+const deleteUser = (email) => {
+    var connection;
+
+    if (!email) {
+        return;
+    }
+
+    try {
+        connection = db.openConnection();
+        $query = 'DELETE FROM `users` WHERE `email`= ?';
+
+        connection.query($query, [email], (error, result) => {
+            if (error) {
+                console.log(error);
+                return;
+            }
+
+            getData();
+            //update content
+        });
+    } catch (error) {
+        console.log(error);
+        alert('Ocorreu um erro!\r\nusers.deleteUser()');
+    } finally {
+        db.closeConnection(connection);
+    }
+}
+
+module.exports = { getData, addUser, updateUser, deleteUser }

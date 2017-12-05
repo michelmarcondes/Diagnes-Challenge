@@ -9,17 +9,12 @@
   <link rel="stylesheet" href="src/styles/customStyle.css">
 
   <script>
-      // You can also require other files to run in this process
-      var users = require('./src/users.js');
-    </script>
+    // You can also require other files to run in this process
+    var users = require('./src/users.js');
+  </script>
 </head>
 
 <body>
-  <!-- All of the Node.js APIs are available in this renderer process.
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>. -->
-
   <div class="window">
     <header class="toolbar toolbar-header">
       <h1 class="title">Cadastro de Usuários</h1>
@@ -29,7 +24,7 @@
           <button class="btn btn-default" id="btnPlus">
             <span class="icon icon-plus"></span>
           </button>
-          <button class="btn btn-default">
+          <button class="btn btn-default" id="bntDelete">
             <span class="icon icon-trash"></span>
           </button>
         </div>
@@ -41,23 +36,23 @@
 
         <!-- SIDE BAR -->
         <div id="sidebar" class="pane-one-fourth sidebar sidebar-min-width hide">
-          <form class="padded-more">
+          <form onsubmit="return false;" class="padded-more">
             <div class="form-group">
               <label>Nome Completo</label>
               <input type="input" class="form-control" placeholder="..." id="name">
             </div>
             <div class="form-group">
-                <label>Telefone</label>
-                <input type="tel" class="form-control" placeholder="(00) 0 0000-0000" id="phoneNumber">
-              </div>
+              <label>Telefone</label>
+              <input type="tel" class="form-control" placeholder="(00) 0 0000-0000" id="phoneNumber">
+            </div>
             <div class="form-group">
               <label>Email</label>
               <input type="email" class="form-control" placeholder="abc@defg.com" id="email">
             </div>
             <div class="form-group">
-                <label>Data de Nascimento</label>
-                <input type="date" class="form-control" placeholder="00/00/0000" id="birthDate">
-              </div>
+              <label>Data de Nascimento</label>
+              <input type="date" class="form-control" placeholder="00/00/0000" id="birthDate">
+            </div>
             <div class="form-group">
               <label>Endereço</label>
               <textarea class="form-control" rows="3" id="address"></textarea>
@@ -75,7 +70,7 @@
         <div id="content" class="pane padded-horizontally-more">
           <h2 class="padded-horizontally-more">Lista de Usuários</h2>
 
-          <input type="button" value="Try DB" id="btn"/>
+          <!-- <input type="button" value="Try DB" id="btn"/> -->
 
           <table id="table" class="table-striped">
             <thead>
