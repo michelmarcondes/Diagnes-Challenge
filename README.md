@@ -20,7 +20,7 @@ Crie o banco de dados importando o script abaixo:
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 05, 2017 at 12:05 PM
+-- Generation Time: Dec 05, 2017 at 12:29 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.0.15
 
@@ -30,6 +30,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `diagnes_challenge`
 --
+DROP DATABASE IF EXISTS `diagnes_challenge`;
+CREATE DATABASE IF NOT EXISTS `diagnes_challenge` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `diagnes_challenge`;
 
 -- --------------------------------------------------------
 
@@ -37,6 +40,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `phoneNumber` varchar(20) NOT NULL,
@@ -62,6 +66,7 @@ INSERT INTO `users` (`name`, `phoneNumber`, `email`, `birthDate`, `address`, `re
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`email`);
+
 
 ```
 
