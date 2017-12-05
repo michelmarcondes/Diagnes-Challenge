@@ -1,12 +1,14 @@
+const host = 'localhost';
+const port = 8889;
+const user = 'wpdev';
+const password = 'wpdev';
+const database = 'diagnes_challenge';
+
 const getConnection = () => {
     var mysql = require('mysql');
 
     return mysql.createConnection({
-        host: 'localhost',
-        port: 8889,
-        user: 'wpdev',
-        password: 'wpdev',
-        database: 'diagnes_challenge'
+        host, port, user, password, database
     });
 };
 

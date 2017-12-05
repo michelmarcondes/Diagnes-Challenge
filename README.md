@@ -1,45 +1,90 @@
-# electron-quick-start
+# Diagnes Front-End Challenge
 
-**Clone and run for a quick way to see Electron in action.**
+**Aplicativo desenvolvido para o processo de seleção Diagnes.**
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start) within the Electron documentation.
+O aplicativo apresenta as principais funções de um cadastro de usuários e foi o primeiro contato com o Electron.
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+Foi escolhido o MySQL como banco de dados local.
+Pode-se utilizar [MAMP](https://www.mamp.info/en/) para simplificar o processo de instalação.
 
-A basic Electron application needs just these files:
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+##Como usar
+**Este guia considera que o Banco de Dados MySQL está instalado e configurado corretamente.**
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/tutorial/quick-start).
-
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+Crie o banco de dados importando o script abaixo:
 
 ```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Dec 05, 2017 at 12:05 PM
+-- Server version: 5.6.35
+-- PHP Version: 7.0.15
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `diagnes_challenge`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `name` varchar(255) NOT NULL,
+  `phoneNumber` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `birthDate` date NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `registerDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`name`, `phoneNumber`, `email`, `birthDate`, `address`, `registerDate`) VALUES
+('Michel Marcondes', '(11)99661-2253', 'michel.marcondes@gmail.com', '1977-05-20', 'Av. Dr. Jorge Zarur, 471, nº 1501, bloco 1\nVila Ema, São José dos Campos - SP\nCEP 12243-081', '2017-12-05 09:58:57');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`email`);
+
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+Para clonar e executar este repositório você precisa do [Git](https://git-scm.com) e do [Node.js](https://nodejs.org/en/download/) instalados em seu computador.
 
-## Resources for Learning Electron
+Execute os comandos:
+```bash
+#Clonar repositorio
+git clone https://github.com/michelmarcondes/Diagnes-Challenge.git
+```
 
-- [electron.atom.io/docs](http://electron.atom.io/docs) - all of Electron's documentation
-- [electron.atom.io/community/#boilerplates](http://electron.atom.io/community/#boilerplates) - sample starter apps created by the community
-- [electron/electron-quick-start](https://github.com/electron/electron-quick-start) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+Abra o projeto no seu editor de preferência e configura os dados de conexões ao MySQL.
+Preencha todas as variáves conforme suas configurações de banco de dados.
 
-## License
+```bash
+#Caminho do arquivo de conexão do Banco de Dados
+<diretorio do projeto>/src/database.js
+```
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+Salve o arquivo e execute os comandos abaixo:
+```bash
+#Instalar dependencias e executar o projeto
+npm install && npm start
+```
+
+
+##Grato pela Oportunidade e aguardo contato!
