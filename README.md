@@ -8,7 +8,8 @@ Foi escolhido o MySQL como banco de dados local.
 Pode-se utilizar [MAMP](https://www.mamp.info/en/) para simplificar o processo de instalação.
 
 
-##Como usar
+## Como usar
+
 **Este guia considera que o Banco de Dados MySQL está instalado e configurado corretamente.**
 
 Crie o banco de dados importando o script abaixo:
@@ -87,4 +88,4 @@ npm install && npm start
 ```
 
 
-##Grato pela Oportunidade e aguardo contato!
+## Grato pela Oportunidade e aguardo contato!
